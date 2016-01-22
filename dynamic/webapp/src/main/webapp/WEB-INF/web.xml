@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>Servlet web application</display-name>
+  
+  <!--  servlets -->
+  <servlet>
+    <servlet-name>HelloWorld</servlet-name>
+    <servlet-class>it.formarete.servlet.HelloWorld</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloWorld</servlet-name>
+    <url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+  
+  <!--  filters -->
+  <filter>
+    <display-name>Authentication</display-name>
+    <filter-name>Authentication</filter-name>
+    <filter-class>it.formarete.filter.Authentication</filter-class>
+  </filter>
+  
+  <!--  mappings -->
+  <filter-mapping>
+    <filter-name>Authentication</filter-name>
+    <url-pattern>/hello</url-pattern>
+  </filter-mapping>
+  
+  <error-page>
+  	<error-code>403</error-code>
+  	<location>/login-errato.html</location>
+  </error-page>
+</web-app>

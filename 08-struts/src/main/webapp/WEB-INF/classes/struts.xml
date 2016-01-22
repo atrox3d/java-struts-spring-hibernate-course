@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts  
+Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+
+	<package name="default" extends="struts-default">
+		<interceptors>
+			<interceptor name="upper" class="it.formarete.interceptor.Upperizer"/>
+			<interceptor-stack name="upperStack">
+<!-- 				<interceptor-ref name="params"/> -->
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="upper"/>
+			</interceptor-stack>
+		</interceptors>
+		<global-results>
+			<result name= "error">error.jsp</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.NullPointerException"/>
+		</global-exception-mappings>
+		
+		<action name="product" class="it.formarete.action.Product">
+			<interceptor-ref name="upperStack"/>
+			<result name="success">welcome.jsp</result>
+			<result name="input">input.jsp</result>
+		</action>
+	</package>
+</struts>      

@@ -1,0 +1,9 @@
+.metadata/
+.recommenders/
+desktop.ini
+RemoteSystemsTempFiles/
+Servers/
+*/target/
+*/.settings/
+*/bin/
+

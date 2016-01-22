@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts  
+Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<constant name="struts.devMode" value="true"/>
+	
+	<package name="default" extends="struts-default">
+		<action name="">
+			<result>WEB-INF/classes/jsp/index.jsp</result>
+		</action>
+	
+		<action name="user" class="it.formarete.model.User">
+			<result>WEB-INF/classes/jsp/user.jsp</result>
+		</action>
+		
+		<action name="employee" class="it.formarete.action.RegisterEmployee">
+			<result>WEB-INF/classes/jsp/employee.jsp</result>
+		</action>
+		
+	</package>
+</struts>      
