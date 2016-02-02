@@ -5,7 +5,7 @@ desktop.ini
 RemoteSystemsTempFiles/
 Servers/
 */target/
-*/.settings/
-*/.classpath/
+*/.settings
+*/.classpath
 */bin/
 
