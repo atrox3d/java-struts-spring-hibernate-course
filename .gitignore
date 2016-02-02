@@ -5,7 +5,7 @@ desktop.ini
 RemoteSystemsTempFiles/
 Servers/
 */target/
+*/bin/
 */.settings
 */.classpath
-*/bin/
-
+*/log4j-application.log
