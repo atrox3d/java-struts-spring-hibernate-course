@@ -10,6 +10,12 @@ import junit.framework.TestCase;
 public class EmployeeDAOTestCase extends TestCase {
 	public void setUp() {
 		HibernateUtils.getSessionFactory();
+		
+		EmployeeDAO dao = new EmployeeDAO();
+		List<Employee> clearEmployees = dao.getAll();
+		for(Employee clearEmployee: clearEmployees) {
+			dao.delete(clearEmployee);
+		}
 	}
 	
 	public void testEmployeeCrud() {

@@ -2,7 +2,9 @@ package it.formarete.test;
 
 import java.util.List;
 
+import it.formarete.model.Employee;
 import it.formarete.model.User;
+import it.formarete.service.EmployeeDAO;
 import it.formarete.service.HibernateUtils;
 import it.formarete.service.UserDAO;
 import junit.framework.TestCase;
@@ -10,6 +12,13 @@ import junit.framework.TestCase;
 public class UserDAOTestCase extends TestCase {
 	public void setUp() {
 		HibernateUtils.getSessionFactory();
+		
+		UserDAO dao = new UserDAO();
+		List<User> clearUsers= dao.getAll();
+		for(User clearUser: clearUsers) {
+			dao.delete(clearUser);
+		}
+		
 	}
 	
 	public void testUserCrud() {
