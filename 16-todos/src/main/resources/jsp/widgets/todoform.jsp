@@ -5,7 +5,9 @@
 <%-- id = <s:property value="id"/> --%>
 <!-- </div> -->
 
-
+<script>
+	console.log('id==0');
+</script>
 <s:if test="id==0">
 	<s:form action="addtodo">
 		<s:hidden name="id"/>
