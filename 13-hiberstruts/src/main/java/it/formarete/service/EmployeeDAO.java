@@ -2,8 +2,10 @@ package it.formarete.service;
 
 import java.util.List;
 
+import it.formarete.action.RegisterEmployee;
 import it.formarete.model.Employee;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -11,12 +13,14 @@ import org.hibernate.cfg.Configuration;
 
 public class EmployeeDAO {
 	
+	final static Logger logger = Logger.getLogger(RegisterEmployee.class);
+
 	public int save(Employee employee) {
 //		Configuration cfg = new Configuration();
 //		cfg.configure("hibernate.cfg.xml");
 //		SessionFactory factory = cfg.buildSessionFactory();
 		int id = -1;
-		
+		logger.info("saving employee:" + employee);
 		Session session = HibernateUtils.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		try {
@@ -34,6 +38,7 @@ public class EmployeeDAO {
 		Session session = HibernateUtils.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		
+		logger.info("updating employee:" + employee);
 		try {
 			session.update(employee);
 			t.commit();
@@ -48,6 +53,7 @@ public class EmployeeDAO {
 		Session session = HibernateUtils.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		
+		logger.info("deleting employee:" + employee);
 		try {
 			session.delete(employee);
 			t.commit();
@@ -64,6 +70,7 @@ public class EmployeeDAO {
 		Session session = HibernateUtils.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		
+		logger.info("loading employee:" + id);
 		try {
 			employee = (Employee)session.get(Employee.class, id);
 			t.commit();
@@ -83,6 +90,7 @@ public class EmployeeDAO {
 		Session session = HibernateUtils.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		
+		logger.info("loading all employees");
 		try {
 			users = session.createCriteria(Employee.class).list();
 			t.commit();

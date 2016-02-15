@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts  
+Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<constant name="struts.devMode" value="true"/>
+	<constant name="struts.action.extension" value=""/>
+<!-- 	<constant name="struts.ui.theme" value="simple" /> -->
+	<constant name="struts.mapper.action.prefix.enabled" value="true" />
+		
+	<package name="default" extends="struts-default">
+	
+		<action name="" class="it.formarete.action.TodoList">
+			<result>WEB-INF/classes/jsp/index.jsp</result>
+		</action>
+
+		<action name="addtodo" class="it.formarete.action.TodoList" method="add">
+			<result>WEB-INF/classes/jsp/index.jsp</result>
+		</action>
+	
+		<action name="edittodo" class="it.formarete.action.TodoList" method="edit">
+			<result>WEB-INF/classes/jsp/index.jsp</result>
+		</action>
+	
+		<action name="updatetodo" class="it.formarete.action.TodoList" method="update">
+			<result>WEB-INF/classes/jsp/index.jsp</result>
+		</action>
+	
+		<action name="deletetodo" class="it.formarete.action.TodoList" method="delete">
+			<result>WEB-INF/classes/jsp/index.jsp</result>
+		</action>
+	
+		<action name="listtodos" class="it.formarete.action.TodoList">
+			<result>WEB-INF/classes/jsp/index.jsp</result>
+		</action>
+
+		<action name="confirmdeletion" class="it.formarete.action.TodoList" method="confirmDeletion">
+			<result>WEB-INF/classes/jsp/widgets/deleteyn.jsp</result>
+		</action>
+		
+		<action name="deletetodos" class="it.formarete.action.TodoList" method="deleteAll">
+			<result>WEB-INF/classes/jsp/index.jsp</result>
+		</action>
+
+<!-- 		<action name="employee" class="it.formarete.action.RegisterEmployee"> -->
+<!-- 			<result>WEB-INF/classes/jsp/employee.jsp</result> -->
+<!-- 		</action> -->
+		
+	</package>
+</struts>      

@@ -28,19 +28,19 @@ public class RegisterEmployee extends ActionSupport{
 		this.employees = employees;
 	}
 	public String getName() {
-		logger.info("getName");
+		logger.info("getName:" + name);
 		return name;
 	}
 	public void setName(String name) {
-		logger.info("setName");
+		logger.info("setName:" + name);
 		this.name = name;
 	}
 	public float getSalary() {
-		logger.info("getSalary");
+		logger.info("getSalary:" + salary);
 		return salary;
 	}
 	public void setSalary(float salary) {
-		logger.info("setSalary");
+		logger.info("setSalary:" + salary);
 		this.salary = salary;
 	}
 	@Override
@@ -50,9 +50,11 @@ public class RegisterEmployee extends ActionSupport{
 		Employee employee = new Employee();
 		employee.setName(name);
 		employee.setSalary(salary);
+		logger.info("save employee" + employee);
 		dao.save(employee);
-		
+		logger.info("employees.getall");
 		employees = dao.getAll();
+		
 		
 		return SUCCESS;
 	}

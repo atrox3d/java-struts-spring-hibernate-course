@@ -29,6 +29,10 @@ public class User extends ActionSupport{
 		return SUCCESS;
 	}
 	
+	@Override
+	public String toString() {
+		return id + ":" +  name;
+	}
 	
 
 }
