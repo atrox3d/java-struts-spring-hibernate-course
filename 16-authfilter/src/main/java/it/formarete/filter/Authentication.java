@@ -16,9 +16,14 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 public class Authentication implements Filter {
+	final static Logger logger = Logger.getLogger(Authentication.class);
+
 	@Override
 	public void init(FilterConfig config) throws ServletException {
+		logger.info("init");
 	}
 
 	@Override
@@ -28,13 +33,16 @@ public class Authentication implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		User user = null;
 		
+		logger.info("doFilter");
 		String USER = (String) request.getAttribute("USER");
+		logger.info("USER=" + USER);
 		/*
 		Map<String, String> cookies = (Map<String, String>) request
 				.getAttribute("cookies");
 		String cookieValue = cookies.get("USER");// getCookie(httpRequest, "USER");
 		*/
 		user = UsersDB.get(USER);
+		logger.info("user=" + user);
 		if (user != null) {
 			httpRequest.setAttribute("user", user);
 			chain.doFilter(request, response);
@@ -43,7 +51,10 @@ public class Authentication implements Filter {
 
 		String username = httpRequest.getParameter("username");
 		String password = httpRequest.getParameter("password");
+		logger.info("username=" + username);
+		logger.info("password=" + password);
 		user = UsersDB.get(username);
+		logger.info("user=" + user);
 
 		if (user != null && user.getPassword().equals(password)) {
 			httpResponse.addCookie(new Cookie("USER", user.getUsername()));

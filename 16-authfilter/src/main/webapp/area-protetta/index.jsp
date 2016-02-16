@@ -11,5 +11,6 @@
 	<p>Hello <jsp:getProperty name="user" property="username" />, benvenuto nell'area protetta.</p>
 	<p>Te lo ripeto? Hello ${user.username}!</p>
 	<p><a href="gallery.jsp">vai alla photogallery</a></p>
+	<p><a href="logout">logout</a></p>
 </body>
 </html>

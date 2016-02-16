@@ -18,12 +18,20 @@ public class HelloWorld extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		name = config.getInitParameter("name");
 	}
+	
+	@Override protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
+			throws ServletException ,IOException {
+		
+		//response.setContentType("text/html");
+		//PrintWriter out = response.getWriter();
+		//out.println("<h1>Hello " + username + "!</h1>");
+	};
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		String username = request.getParameter("username");
-		if (username == null) {
+		if (username == null || username == "") {
 			username = "nobody";
 		}
 
