@@ -22,5 +22,8 @@ public class Employee {
 	public float	getSalary()				{return salary;}
 	public void		setSalary(float salary)	{this.salary = salary;}
 	
-	
+	@Override
+	public String toString() {
+		return String.format("Employee[%d:%s:%f]", id, name, salary);
+	}
 }
