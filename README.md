@@ -1,2 +1,2 @@
-# Java-strus-spring-hibernate course contents
-these are the contents of the course I attented, teached by [IceOnFire](https://github.com/IceOnFire), proud leader of the [IngloriousCoderz](https://github.com/IngloriousCoderz) :D
+# Java-struts-spring-hibernate course contents
+these are the contents of the course I attended, taught by [IceOnFire](https://github.com/IceOnFire), proud leader of  [IngloriousCoderz](https://github.com/IngloriousCoderz) :D
