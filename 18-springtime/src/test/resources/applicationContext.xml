@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+               http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="addr" class="it.formarete.springtime.Address">
+		<property name = "name" value="via stefano tempia" />
+		<property name="city" value="torino" />
+	</bean>
+
+	<bean id="emp" class="it.formarete.springtime.Employee">
+		<property name="name" value="giancarlo"></property>
+		<property name="salary" value="1000"></property>
+		
+		<property name="address" ref="addr"/>
+	</bean>
+
+</beans>  

@@ -29,11 +29,13 @@ public class Logout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpServletRequest httpRequest = (HttpServletRequest)request;
 		HttpServletResponse httpResponse = (HttpServletResponse)response;
+		/*
 		String USER = (String) request.getAttribute("USER");
 		logger.info("USER="+USER);
 		request.removeAttribute("USER");
 		USER = (String) request.getAttribute("USER");
 		logger.info("USER="+USER);
+		*/
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		Cookie[] cookies = httpRequest.getCookies();
 		for(Cookie cookie : cookies) {
