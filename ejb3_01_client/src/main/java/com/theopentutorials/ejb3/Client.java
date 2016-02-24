@@ -7,7 +7,9 @@ import com.theopentutorials.ejb3.HelloWorld;
  
 public class Client {
     public static void main(String[] args) {
-        HelloWorld bean = doLookup();
+		System.out.println("lookupName:" + getLookupName());
+    	HelloWorld bean = doLookup();
+		System.out.println("bean:" + bean);
         System.out.println(bean.sayHello()); // 4. Call business logic
     }
  
