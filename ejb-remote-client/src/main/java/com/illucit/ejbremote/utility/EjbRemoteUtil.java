@@ -54,7 +54,7 @@ public class EjbRemoteUtil {
 //		props.put("endpoint.name", "client-endpoint");
 		props.put(Context.PROVIDER_URL, "http-remoting://" + host + ":" + port);
 
-		props.put("remote.connections", "default");
+//		props.put("remote.connections", "default");
 		props.put("remote.connection.default.host", host);
 		props.put("remote.connection.default.port", port);
 //		props.put("remote.connection.default.username", "ejb");
