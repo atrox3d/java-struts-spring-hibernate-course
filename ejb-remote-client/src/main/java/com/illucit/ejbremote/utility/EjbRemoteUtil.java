@@ -57,8 +57,8 @@ public class EjbRemoteUtil {
 		props.put("remote.connections", "default");
 		props.put("remote.connection.default.host", host);
 		props.put("remote.connection.default.port", port);
-		props.put("remote.connection.default.username", "ejb");
-		props.put("remote.connection.default.password", "password1!");
+//		props.put("remote.connection.default.username", "ejb");
+//		props.put("remote.connection.default.password", "password1!");
 
 		props.put("remote.connectionprovider.create.options.org.xnio.Options.SSL_ENABLED", "false");
 		props.put("remote.connection.default.connect.options.org.xnio.Options.SASL_POLICY_NOANONYMOUS", "false");
