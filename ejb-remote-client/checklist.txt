@@ -3,3 +3,4 @@
 3) remove authentication						: ok
 4) remove remote.connection.default.host/port	: KO
 5) remove remote.connections, default			: KO
+6) remove Context.PROVIDER_URL					: KO
