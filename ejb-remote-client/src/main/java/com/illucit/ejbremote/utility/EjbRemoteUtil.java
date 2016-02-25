@@ -46,7 +46,7 @@ public class EjbRemoteUtil {
 		Properties props = new Properties();
 	
 //		props.put(Context.INITIAL_CONTEXT_FACTORY, "org.jboss.naming.remote.client.InitialContextFactory");
-//		props.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
+		props.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
 	
 //		props.put("jboss.naming.client.ejb.context", "false");
 		props.put("org.jboss.ejb.client.scoped.context", "true");
@@ -60,9 +60,9 @@ public class EjbRemoteUtil {
 //		props.put("remote.connection.default.username", "ejb");
 //		props.put("remote.connection.default.password", "password1!");
 
-		props.put("remote.connectionprovider.create.options.org.xnio.Options.SSL_ENABLED", "false");
-		props.put("remote.connection.default.connect.options.org.xnio.Options.SASL_POLICY_NOANONYMOUS", "false");
-		props.put("remote.connection.default.connect.options.org.xnio.Options.SASL_POLICY_NOPLAINTEXT", "false");	
+//		props.put("remote.connectionprovider.create.options.org.xnio.Options.SSL_ENABLED", "false");
+//		props.put("remote.connection.default.connect.options.org.xnio.Options.SASL_POLICY_NOANONYMOUS", "false");
+//		props.put("remote.connection.default.connect.options.org.xnio.Options.SASL_POLICY_NOPLAINTEXT", "false");	
 
 		return props;
 	}
