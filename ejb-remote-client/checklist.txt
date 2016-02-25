@@ -1,0 +1,2 @@
+1) remove jboss-ejb-client.properties	: ok
+2) remove jndi.properties				: 
