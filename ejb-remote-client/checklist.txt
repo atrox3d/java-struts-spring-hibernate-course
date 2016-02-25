@@ -1,9 +1,16 @@
-1) remove jboss-ejb-client.properties									: ok
-2) remove jndi.properties												: ok
-3) remove authentication												: ok
-4) remove remote.connection.default.host/port							: KO
-5) remove remote.connections, default									: KO
-6) remove Context.PROVIDER_URL											: KO
-7) remove Context.INITIAL_CONTEXT_FACTORY								: ok
-8) remove Context.URL_PKG_PREFIXES										: KO
-9) remove remote.connection.default.connect.options.org.xnio.Options	: ok
+ 1) remove jboss-ejb-client.properties									: ok
+ 2) remove jndi.properties												: ok
+----------------------------------------------------------------------------
+client-properties content
+----------------------------------------------------------------------------
+ 3) remove authentication												: ok
+ 4) remove remote.connection.default.host/port							: KO
+ 5) remove remote.connections, default									: KO
+ 6) remove Context.PROVIDER_URL											: KO
+ 7) remove Context.INITIAL_CONTEXT_FACTORY								: ok
+ 8) remove Context.URL_PKG_PREFIXES										: KO
+ 9) remove remote.connection.default.connect.options.org.xnio.Options	: ok
+----------------------------------------------------------------------------
+ejb-URL
+----------------------------------------------------------------------------
+10) working URL: ejb:/ejb-remote-server/ExampleServiceImpl!com.illucit.ejbremote.server.ExampleService
