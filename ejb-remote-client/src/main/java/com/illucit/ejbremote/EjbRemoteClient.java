@@ -1,17 +1,17 @@
 package com.illucit.ejbremote;
 
-import java.util.Hashtable;
+//import java.util.Hashtable;
 import java.util.Properties;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import org.jboss.ejb.client.ContextSelector;
-import org.jboss.ejb.client.EJBClientConfiguration;
-import org.jboss.ejb.client.EJBClientContext;
-import org.jboss.ejb.client.PropertiesBasedEJBClientConfiguration;
-import org.jboss.ejb.client.remoting.ConfigBasedEJBClientContextSelector;
+//import org.jboss.ejb.client.ContextSelector;
+//import org.jboss.ejb.client.EJBClientConfiguration;
+//import org.jboss.ejb.client.EJBClientContext;
+//import org.jboss.ejb.client.PropertiesBasedEJBClientConfiguration;
+//import org.jboss.ejb.client.remoting.ConfigBasedEJBClientContextSelector;
 
 import com.illucit.ejbremote.server.ExampleService;
 import com.illucit.ejbremote.server.ExampleServiceImpl;
@@ -27,14 +27,17 @@ public class EjbRemoteClient {
 		ExampleService service;
 		
 		ejbURL = EjbRemoteUtil.getEjbURL(
-								"ejb-remote-server", 
+								"", 
 								"ejb-remote-server", 
 								ExampleServiceImpl.class.getSimpleName(), 
 								ExampleService.class.getName()
 							);
 		
-		ejbURL = 
-				"ejb:/ejb-remote-server/ExampleServiceImpl!com.illucit.ejbremote.server.ExampleService";
+		System.out.println("getEjbURL() = " + ejbURL);
+		
+		//ejbURL = "ejb:/ejb-remote-server/ExampleServiceImpl!com.illucit.ejbremote.server.ExampleService";
+		
+		//System.out.println("manual URL  = " + ejbURL);
 		
 		System.out.printf("host  : %s\n", host);
 		System.out.printf("port  : %s\n", port);

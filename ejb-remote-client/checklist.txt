@@ -14,3 +14,25 @@ client-properties content
 ejb-URL
 ----------------------------------------------------------------------------
 10) working URL: ejb:/ejb-remote-server/ExampleServiceImpl!com.illucit.ejbremote.server.ExampleService
+11) working format: 
+	protocol:earName/moduleName/beanName/remoteInterface
+where :
+	protocol        = ejb
+	earName         = name of the ear without extension (or, like in this case empty string)
+	moduleName      = artifactId of maven pom AND/OR module-name in ejb-jar.xml file of the ejb project
+	beanNAme        = remoteBeanClass.class.getSimpleName()
+	remoteInterface = remoteBeanInteface.class.getName()
+
+it must match the string provided by the server console (java:jboss/exported/)
+
+08:36:18,761 INFO  [org.jboss.as.ejb3.deployment.processors.EjbJndiBindingsDeploymentUnitProcessor] (MSC service thread 1-7) JNDI bindings for session bean named ExampleServiceImpl in deployment unit deployment "ejb-remote-server.jar" are as follows:
+
+        java:global/ejb-remote-server/ExampleServiceImpl!com.illucit.ejbremote.server.ExampleService
+        java:app/ejb-remote-server/ExampleServiceImpl!com.illucit.ejbremote.server.ExampleService
+        java:module/ExampleServiceImpl!com.illucit.ejbremote.server.ExampleService
+        #this is the right one
+		java:jboss/exported/ejb-remote-server/ExampleServiceImpl!com.illucit.ejbremote.server.ExampleService
+        #
+		java:global/ejb-remote-server/ExampleServiceImpl
+        java:app/ejb-remote-server/ExampleServiceImpl
+        java:module/ExampleServiceImpl

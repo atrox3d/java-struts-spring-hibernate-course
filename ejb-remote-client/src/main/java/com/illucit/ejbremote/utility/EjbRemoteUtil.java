@@ -22,21 +22,21 @@ public class EjbRemoteUtil {
 	}
 	
 	public static String getEjbURL(
-										String appName,
+										String earName,
 										String moduleName,
 										String beanName,
-										String remoteView
+										String remoteInterface
 									) 
 	{
-		String protocol = "ejb:";
+		String protocol = "ejb";
 		String ejbURL;
 		
-		ejbURL = String.format("%s/%s/%s/%s!%s", 
+		ejbURL = String.format("%s:%s/%s/%s!%s", 
 									protocol,
-									appName,
+									earName,
 									moduleName,
 									beanName,
-									remoteView
+									remoteInterface
 							);
 		return ejbURL;
 	}
