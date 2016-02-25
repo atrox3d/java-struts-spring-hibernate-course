@@ -45,14 +45,14 @@ public class EjbRemoteUtil {
 	
 		Properties props = new Properties();
 	
-		props.put(Context.INITIAL_CONTEXT_FACTORY, "org.jboss.naming.remote.client.InitialContextFactory");
+//		props.put(Context.INITIAL_CONTEXT_FACTORY, "org.jboss.naming.remote.client.InitialContextFactory");
 		props.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
 	
 //		props.put("jboss.naming.client.ejb.context", "false");
 		props.put("org.jboss.ejb.client.scoped.context", "true");
 //	
 //		props.put("endpoint.name", "client-endpoint");
-//		props.put(Context.PROVIDER_URL, "http-remoting://" + host + ":" + port);
+		props.put(Context.PROVIDER_URL, "http-remoting://" + host + ":" + port);
 
 		props.put("remote.connections", "default");
 		props.put("remote.connection.default.host", host);
