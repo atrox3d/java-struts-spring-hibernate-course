@@ -7,7 +7,7 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 @Stateless
-@Remote(LibrarySessionBean.class)
+//@Remote(LibrarySessionBean.class)
 public class LibrarySessionBean implements LibrarySessionBeanRemote {
 	
 	List<String> bookShelf;

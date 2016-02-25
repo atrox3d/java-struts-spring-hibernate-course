@@ -107,8 +107,8 @@
                 <configuration>
                     <ejbVersion>3.1</ejbVersion>
                     <!-- this is false by default -->
-                    <generateClient>true</generateClient>
-                </configuration>
+<!--                     <generateClient>true</generateClient>
+ -->                </configuration>
             </plugin>
 
 		     <plugin>

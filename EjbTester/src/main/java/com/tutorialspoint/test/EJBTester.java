@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import com.tutorialspoint.stateless.LibrarySessionBeanRemote;
 import com.tutorialspoint.stateless.LibrarySessionBean;
+import com.tutorialspoint.test.EjbRemoteUtil;
 
 public class EJBTester {
 
@@ -19,7 +20,8 @@ public class EJBTester {
 	Properties props;
 	InitialContext ctx;
     private static final String PKG_INTERFACES = "org.jboss.ejb.client.naming";
-    
+    String host = "localhost";
+    String port = "1339";
 	
 	{
 		props = new Properties();
@@ -41,11 +43,16 @@ public class EJBTester {
 			System.out.println("----------------------------------------------------------------");
 	        System.out.printf("properties.put: %-30s = %s\n", Context.URL_PKG_PREFIXES, PKG_INTERFACES);
 	        System.out.printf("properties.put: %-30s = %s\n", "java.naming.provider.url", "localhost");
-	        //System.out.printf("properties.put: %-30s = %s\n", "jboss.naming.client.ejb.context", "true");
+	        System.out.printf("properties.put: %-30s = %s\n", "jboss.naming.client.ejb.context", "true");
 			System.out.println("----------------------------------------------------------------");
 	        props.put(Context.URL_PKG_PREFIXES, PKG_INTERFACES);
-	        props.put("java.naming.provider.url", "localhost");
-	        //props.put("jboss.naming.client.ejb.context", true);
+	        //props.put("java.naming.provider.url", "localhost");
+	        //props.put("jboss.naming.client.ejb.context", "true");
+			props.put("org.jboss.ejb.client.scoped.context", "true");
+			props.put(Context.PROVIDER_URL, "http-remoting://" + host + ":" + port);
+			props.put("remote.connections", "default");
+			props.put("remote.connection.default.host", host);
+			props.put("remote.connection.default.port", port);
 		}
 		
         brConsoleReader = new BufferedReader(
@@ -97,7 +104,7 @@ public class EJBTester {
         final String interfaceName = LibrarySessionBeanRemote.class.getName();
  
         // Create a look up string name
-        String name = "ejb:" + appName + "/" + moduleName + "/" + distinctName
+        String name = "ejb:" + appName + "/" + moduleName // + "/"  + distinctName
 //        String name = appName + "/" + moduleName + "/" + distinctName
                 + "/" + beanName + "!" + interfaceName;
  
@@ -106,13 +113,13 @@ public class EJBTester {
 	
 	public LibrarySessionBeanRemote getRemoteBean() throws NamingException {
 		//String lookupName = getLookupName();
-		String lookupName = "LibrarySessionBean/remote";
+		String lookupName = "ejb:/ejb-remote-server/ExampleServiceImpl!com.illucit.ejbremote.server.ExampleService";
 		System.out.println("*lookupName=" + lookupName);
 		LibrarySessionBeanRemote libraryBean = null;
 		try {
 			ctx = new InitialContext(props);
 			libraryBean =	(LibrarySessionBeanRemote)ctx.lookup(lookupName);
-			ctx.close();
+			//ctx.close();
 		} catch (NamingException ex) {
 			ex.printStackTrace();
 		}
@@ -122,15 +129,31 @@ public class EJBTester {
 	public void testStatelessEjb() {
 		try {
 			int choice = 1;
+			Properties properties = EjbRemoteUtil.createclientProperties(host, port);
+			System.out.println("----------------------------------------------------------------");
+			System.out.println("properties FORCED:");
+			System.out.println("----------------------------------------------------------------");
 			
-			String lookupName = getLookupName();
+	        for(Object prop: properties.keySet().toArray()) {
+	        	System.out.printf("property: %-30s = %s\n", prop, props.getProperty((String) prop));
+	        }
+			//String lookupName = getLookupName();
 			//String lookupName = "LibrarySessionBean/remote";
+			String lookupName  = EjbRemoteUtil.getEjbURL(
+															"", 
+															"EjbComponent-1.0-SNAPSHOT", 
+															LibrarySessionBean.class.getSimpleName(), 
+															LibrarySessionBeanRemote.class.getName()
+														);
+			//String lookupName = "ejb:/EjbComponent-1.0-SNAPSHOT/LibrarySessionBean!com.tutorialspoint.stateless.LibrarySessionBean";
+			System.out.println("----------------------------------------------------------------");
 			System.out.println("*lookupName=" + lookupName);
+			System.out.println("----------------------------------------------------------------");
 			LibrarySessionBeanRemote libraryBean = null;
 			try {
-				ctx = new InitialContext(props);
+				ctx = new InitialContext(properties);
 				libraryBean =	(LibrarySessionBeanRemote)ctx.lookup(lookupName);
-				ctx.close();
+				//ctx.close();
 			} catch (NamingException ex) {
 				ex.printStackTrace();
 			}
