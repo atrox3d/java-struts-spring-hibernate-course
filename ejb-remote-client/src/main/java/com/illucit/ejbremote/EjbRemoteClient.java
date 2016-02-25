@@ -1,5 +1,6 @@
 package com.illucit.ejbremote;
 
+import java.util.Map;
 import java.util.Properties;
 
 import javax.naming.Context;
@@ -43,7 +44,10 @@ public class EjbRemoteClient {
 		String exampleResult;
 		
 		exampleResult = service.greet(toGreet);
-		
 		System.out.println(exampleResult);
+		
+		Map<Object, Object> systemProperties;
+		systemProperties = service.getSystemProperties();
+		System.out.println("Wildfly Home Dir: " + systemProperties.get("jboss.home.dir"));
 	}
 }
