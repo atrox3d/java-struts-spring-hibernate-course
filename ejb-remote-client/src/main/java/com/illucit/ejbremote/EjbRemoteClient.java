@@ -37,8 +37,8 @@ public class EjbRemoteClient {
 		remotingContext = EjbRemoteUtil.createRemoteEjbContext(clientProperties);
 		service = EjbRemoteUtil.createEjbProxy(remotingContext, ejbURL, ExampleService.class);
 		
-	    Context context = new InitialContext(clientProperties);
-	    service = (ExampleService) context.lookup(ejbURL);
+//	    Context context = new InitialContext(clientProperties);
+//	    service = (ExampleService) context.lookup(ejbURL);
 	    
 		String toGreet = "RRrrrobbb!";
 		String exampleResult;
