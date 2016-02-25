@@ -4,3 +4,5 @@
 4) remove remote.connection.default.host/port	: KO
 5) remove remote.connections, default			: KO
 6) remove Context.PROVIDER_URL					: KO
+7) remove Context.INITIAL_CONTEXT_FACTORY		: ok
+8) remove Context.URL_PKG_PREFIXES				: KO

@@ -46,7 +46,7 @@ public class EjbRemoteUtil {
 		Properties props = new Properties();
 	
 //		props.put(Context.INITIAL_CONTEXT_FACTORY, "org.jboss.naming.remote.client.InitialContextFactory");
-		props.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
+//		props.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
 	
 //		props.put("jboss.naming.client.ejb.context", "false");
 		props.put("org.jboss.ejb.client.scoped.context", "true");
