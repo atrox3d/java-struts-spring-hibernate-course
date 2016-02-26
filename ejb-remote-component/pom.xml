@@ -20,6 +20,8 @@
 
        <!-- JBoss dependency versions -->
        <version.jboss.spec.javaee.7.0>1.0.0.Final</version.jboss.spec.javaee.7.0>
+       <version.org.jboss.as.plugins.maven.plugin>7.3.Final</version.org.jboss.as.plugins.maven.plugin>
+       <version.org.wildfly.plugins.maven.plugin>1.0.2.Final</version.org.wildfly.plugins.maven.plugin>
 
        <!-- other plugin versions -->
        <version.compiler.plugin>3.1</version.compiler.plugin>
@@ -54,6 +56,15 @@
         <!-- Set the name of the deployment -->
         <finalName>${project.artifactId}</finalName>
         <plugins>
+            <!-- Wildfly plugin to deploy the application -->
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${version.org.wildfly.plugins.maven.plugin}</version>
+                 <configuration>
+                    <filename>${project.build.finalName}.jar</filename>
+                </configuration>
+            </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${version.compiler.plugin}</version>
