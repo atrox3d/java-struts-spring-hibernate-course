@@ -3,9 +3,9 @@ package com.tutorialspoint.stateful;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
 
-@Stateless
+@Stateful
 public class LibraryStatefulSessionBean implements LibraryStatefulSessionBeanRemote {
 	
 	List<String> bookShelf;

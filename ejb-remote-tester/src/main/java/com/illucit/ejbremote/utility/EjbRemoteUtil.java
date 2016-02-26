@@ -95,8 +95,8 @@ public class EjbRemoteUtil {
 		ejbURL = EjbRemoteUtil.getEjbURL(
 				"", 
 				"ejb-remote-component", 
-				LibrarySessionBean.class.getSimpleName(), 
-				LibrarySessionBeanRemote.class.getName()
+				beanName, 
+				remoteInterface
 			);
 		
 		System.out.println("getEjbURL() = " + ejbURL);

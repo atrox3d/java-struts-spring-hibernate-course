@@ -11,6 +11,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import com.tutorialspoint.stateless.LibrarySessionBeanRemote;
+import com.tutorialspoint.stateful.LibraryStatefulSessionBean;
+import com.tutorialspoint.stateful.LibraryStatefulSessionBeanRemote;
 import com.tutorialspoint.stateless.LibrarySessionBean;
 import com.tutorialspoint.test.EjbRemoteUtil;
 
@@ -31,10 +33,12 @@ public class EJBTester {
 	}
 	
 	public static void main(String [] args) {
+		System.out.println("*********************WADDA*******************");
 		EJBTester ejbTester = new EJBTester();
 		ejbTester.testStatelessEjb();
+		ejbTester.testStatefulEjb();
 	}
-	
+
 	private void showGUI() {
 	      System.out.println("**********************");
 	      System.out.println("Welcome to Book Store");
@@ -82,6 +86,9 @@ public class EJBTester {
     }
 	
 	public void testStatefulEjb() {
+		System.out.println("----------------------------------------------------------------");
+		System.out.println("testing stateful bean:");
+		System.out.println("----------------------------------------------------------------");
 		try {
 			int choice = 1;
 			Properties properties = EjbRemoteUtil.createclientProperties(host, port);
@@ -92,15 +99,13 @@ public class EJBTester {
 	        for(Object prop: properties.keySet().toArray()) {
 	        	System.out.printf("property: %-30s = %s\n", prop, properties.getProperty((String) prop));
 	        }
-			//String lookupName = getLookupName();
-			//String lookupName = "LibrarySessionBean/remote";
-			String lookupName  = EjbRemoteUtil.getEjbURL(
+
+	        String lookupName  = EjbRemoteUtil.getEjbURL(
 															"", 
 															"EjbComponent-1.0-SNAPSHOT", 
-															LibrarySessionBean.class.getSimpleName(), 
-															LibrarySessionBeanRemote.class.getName()
+															LibraryStatefulSessionBean.class.getSimpleName(), 
+															LibraryStatefulSessionBeanRemote.class.getName()
 														);
-			//String lookupName = "ejb:/EjbComponent-1.0-SNAPSHOT/LibrarySessionBean!com.tutorialspoint.stateless.LibrarySessionBean";
 			System.out.println("----------------------------------------------------------------");
 			System.out.println("*lookupName=" + lookupName);
 			System.out.println("----------------------------------------------------------------");
@@ -108,11 +113,9 @@ public class EJBTester {
 			try {
 				ctx = new InitialContext(properties);
 				libraryBean =	(LibrarySessionBeanRemote)ctx.lookup(lookupName);
-				//ctx.close();
 			} catch (NamingException ex) {
 				ex.printStackTrace();
 			}
-			//LibrarySessionBeanRemote libraryBean = getRemoteBean();
 			
 			while(choice != 2) {
 				String bookName;
@@ -141,6 +144,9 @@ public class EJBTester {
 	
 	
 	public void testStatelessEjb() {
+		System.out.println("----------------------------------------------------------------");
+		System.out.println("testing stateless bean:");
+		System.out.println("----------------------------------------------------------------");
 		try {
 			int choice = 1;
 			Properties properties = EjbRemoteUtil.createclientProperties(host, port);

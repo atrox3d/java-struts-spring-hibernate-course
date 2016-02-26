@@ -6,14 +6,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
+//import javax.naming.Context;
+//import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import com.illucit.ejbremote.server.ExampleService;
-import com.illucit.ejbremote.server.ExampleServiceImpl;
+//import com.illucit.ejbremote.server.ExampleService;
+//import com.illucit.ejbremote.server.ExampleServiceImpl;
 import com.illucit.ejbremote.utility.EjbRemoteUtil;
 import com.tutorialspoint.stateless.LibrarySessionBeanRemote;
+import com.tutorialspoint.stateful.LibraryStatefulSessionBean;
+import com.tutorialspoint.stateful.LibraryStatefulSessionBeanRemote;
 import com.tutorialspoint.stateless.LibrarySessionBean;
 
 public class EjbRemoteClient {
@@ -29,11 +31,15 @@ public class EjbRemoteClient {
 	public static void main(String[] args) throws NamingException, ClassCastException  {
 		String host = "localhost";
 		String port = String.valueOf(1339);
-		LibrarySessionBeanRemote service;
+		EjbRemoteClient ejbClient = new EjbRemoteClient();
+		LibrarySessionBeanRemote statelessService;
+		LibraryStatefulSessionBeanRemote statefulService;
 
 		System.out.println("----------------------------------------------------------------");
+		System.out.println("testing stateLESS bean:");
+		System.out.println("----------------------------------------------------------------");
 		System.out.println("getting remote bean...");
-		service = EjbRemoteUtil.getRemoteBean(
+		statelessService = EjbRemoteUtil.getRemoteBean(
 												host, 
 												port, 
 												"", 
@@ -43,14 +49,33 @@ public class EjbRemoteClient {
 												LibrarySessionBeanRemote.class
 											);
 		
-		EjbRemoteClient ejbClient = new EjbRemoteClient();
 		System.out.println("done");
 		System.out.println("----------------------------------------------------------------");
-		ejbClient.testStatelessEjb(service);
+		ejbClient.testStatelessEjb(statelessService);
 		
+		System.out.println("----------------------------------------------------------------");
+		System.out.println("testing stateFUL bean:");
+		System.out.println("----------------------------------------------------------------");
+		System.out.println("getting remote bean...");
+		statefulService = EjbRemoteUtil.getRemoteBean(
+												host, 
+												port, 
+												"", 
+												"ejb-remote-component", 
+												LibraryStatefulSessionBean.class.getSimpleName(), 
+												LibraryStatefulSessionBeanRemote.class.getName() + "?stateful",
+												LibraryStatefulSessionBeanRemote.class
+											);
+		
+		System.out.println("done");
+		System.out.println("----------------------------------------------------------------");
+		ejbClient.testStatefulEjb(statefulService);
 	}
 
-	public  void testStatelessEjb(LibrarySessionBeanRemote libraryBean) {
+	public void testStatefulEjb(LibraryStatefulSessionBeanRemote libraryBean) {
+		System.out.println("----------------------------------------------------------------");
+		System.out.println("testing testStatelessEjb:");
+		System.out.println("----------------------------------------------------------------");
 		try {
 			int choice = 1;
 			
@@ -80,6 +105,38 @@ public class EjbRemoteClient {
 		}
 	}
 	
+	public void testStatelessEjb(LibrarySessionBeanRemote libraryBean) {
+		System.out.println("----------------------------------------------------------------");
+		System.out.println("testing testStatelessEjb:");
+		System.out.println("----------------------------------------------------------------");
+		try {
+			int choice = 1;
+			
+			while(choice != 2) {
+				String bookName;
+				showGUI();
+				String strChoice = brConsoleReader.readLine();
+				choice = Integer.parseInt(strChoice);
+				if(choice==1){
+					System.out.println("Enter book name:");
+					bookName = brConsoleReader.readLine();
+					System.out.println("adding book: " + bookName);
+					libraryBean.addBook(bookName);
+				} 
+			}
+			
+			List<String>bookList = libraryBean.getBooks();
+			System.out.println("Books entered so far:" + bookList.size());
+			for(String book: bookList.toArray(new String [0])) {
+				System.out.println(book);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			
+		}
+	}
 	private void showGUI() {
 	      System.out.println("**********************");
 	      System.out.println("Welcome to Book Store");

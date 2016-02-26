@@ -139,7 +139,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>${version.exec.plugin}</version>
                 <configuration>
-                    <mainClass>com.illucit.ejbremote.EjbRemoteClient</mainClass>
+                     <mainClass>com.illucit.ejbremote.EjbRemoteClient</mainClass>
                 </configuration>
             </plugin>
         </plugins>
