@@ -8,13 +8,13 @@ import javax.ejb.Stateless;
 @Stateless
 public class LibrarySessionBean implements LibrarySessionBeanRemote {
 	
-	List<String> bookShelf;
+	static List<String> bookShelf = new ArrayList<String>();
 
     public LibrarySessionBean() {
 		System.out.println("----------------------------------------------------------------");
     	System.out.println("LibrarySessionBean: initializing bookshelf");
 		System.out.println("----------------------------------------------------------------");
-    	bookShelf = new ArrayList<String>();
+    	//bookShelf = new ArrayList<String>();
     }
 
 	@Override
