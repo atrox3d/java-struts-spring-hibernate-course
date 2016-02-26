@@ -13,6 +13,7 @@ import javax.naming.NamingException;
 //import com.illucit.ejbremote.server.ExampleService;
 //import com.illucit.ejbremote.server.ExampleServiceImpl;
 import com.illucit.ejbremote.utility.EjbRemoteUtil;
+import com.tutorialpoints.Library;
 import com.tutorialspoint.stateless.LibrarySessionBeanRemote;
 import com.tutorialspoint.stateful.LibraryStatefulSessionBean;
 import com.tutorialspoint.stateful.LibraryStatefulSessionBeanRemote;
@@ -51,7 +52,7 @@ public class EjbRemoteClient {
 		
 		System.out.println("done");
 		System.out.println("----------------------------------------------------------------");
-		ejbClient.testStatelessEjb(statelessService);
+		ejbClient.testEjb(statelessService);
 		
 		System.out.println("----------------------------------------------------------------");
 		System.out.println("testing stateFUL bean:");
@@ -69,10 +70,10 @@ public class EjbRemoteClient {
 		
 		System.out.println("done");
 		System.out.println("----------------------------------------------------------------");
-		ejbClient.testStatefulEjb(statefulService);
+		ejbClient.testEjb(statefulService);
 	}
 
-	public void testStatefulEjb(LibraryStatefulSessionBeanRemote libraryBean) {
+	public void testStatefulEjb(Library libraryBean) {
 		System.out.println("----------------------------------------------------------------");
 		System.out.println("testing testStatelessEjb:");
 		System.out.println("----------------------------------------------------------------");
@@ -105,24 +106,46 @@ public class EjbRemoteClient {
 		}
 	}
 	
-	public void testStatelessEjb(LibrarySessionBeanRemote libraryBean) {
+	public void testEjb(Library libraryBean) {
 		System.out.println("----------------------------------------------------------------");
 		System.out.println("testing testStatelessEjb:");
 		System.out.println("----------------------------------------------------------------");
 		try {
 			int choice = 1;
 			
-			while(choice != 2) {
+			while(choice != 4) {
 				String bookName;
 				showGUI();
 				String strChoice = brConsoleReader.readLine();
 				choice = Integer.parseInt(strChoice);
-				if(choice==1){
-					System.out.println("Enter book name:");
-					bookName = brConsoleReader.readLine();
-					System.out.println("adding book: " + bookName);
-					libraryBean.addBook(bookName);
-				} 
+				switch(choice)
+				{
+					case 1:
+					{
+						System.out.println("Enter book name:");
+						bookName = brConsoleReader.readLine();
+						System.out.println("adding book: " + bookName);
+						libraryBean.addBook(bookName);
+					}
+					break;
+
+					case 2:
+					{
+						List<String>bookList = libraryBean.getBooks();
+						System.out.println("Books entered so far:" + bookList.size());
+						for(String book: bookList.toArray(new String [0])) {
+							System.out.println(book);
+						}
+					}
+					break;
+
+					case 3:
+					{
+						System.out.println("deleting books");
+						libraryBean.deleteBooks();
+					}
+					break;
+				}
 			}
 			
 			List<String>bookList = libraryBean.getBooks();
@@ -143,7 +166,9 @@ public class EjbRemoteClient {
 	      System.out.println("**********************");
 	      System.out.println("Options:");
 	      System.out.println("1. Add Book");
-	      System.out.println("2. Exit");
+	      System.out.println("2. List Books");
+	      System.out.println("3. Delete Books");
+	      System.out.println("4. Exit");
 	      System.out.println("Enter Choice:");
 	 }
 	

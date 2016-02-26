@@ -37,4 +37,12 @@ public class LibraryStatefulSessionBean implements LibraryStatefulSessionBeanRem
 		return bookShelf;
 	}
 
+	@Override
+	public void deleteBooks() {
+		System.out.println("----------------------------------------------------------------");
+    	System.out.println("LibrarySessionBean: deleting books");
+		System.out.println("----------------------------------------------------------------");
+    	bookShelf = new ArrayList<String>();
+	}
+	
 }
